@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.qhit.lh.gr3.bonnie.hibernatet05.bean.Role"
+		table="t_role">
+		<!--主键的配置 -->
+		<id name="roleId" column="roleId" type="integer">
+			<!-- 取值自增表中的字段 -->
+			<generator class="native">
+			</generator>
+		</id>
+		<!--成员的属性配置 -->
+		<property name="roleName" column="roleName" type="string"></property>
+		<property name="memo" column="memo" type="string"></property>
+
+		<!-- 多对多关系的映射 -->
+		<set name="users" table="role_user" lazy="false">
+			<key column="roleId"></key>
+			<many-to-many class="com.qhit.lh.gr3.bonnie.hibernatet05.bean.User"
+				column="userId"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
